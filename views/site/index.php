@@ -37,8 +37,20 @@ $this->title = 'My Yii Application';
             ]);
         }
     }
-
-    var_dump($modelQueryHard[0]);
+    
+	if (!empty($modelQueryHard)) {
+        $dataProvider = new ActiveDataProvider([
+            'query' => $modelQueryHard,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+        if (!empty($dataProvider)) {
+            echo GridView::widget([
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+    }
     
     ?>
     </div>
