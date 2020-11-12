@@ -85,7 +85,7 @@ class SiteController extends Controller
                         $modelLogs->save();
                     }
                     if (isset($responseId[$i]->id) && isset($arr[$i]->id)) {
-                        $responseMove[$i] = self::MoveColumnTrello($responseId[$i]->id, $arr[$i]->id);
+                        $responseMove[$i] = self::MoveColumnTrello($responseId[$i]->id, $arr[$i]->idList);
                     }
                     if (isset($responseMove[$i]->name) && isset($responseId[$i]->name)) {
                         $modelLogs = new Logs();
@@ -127,7 +127,7 @@ class SiteController extends Controller
             'token' => '9a1576e541779c18463ef55b73ca77f0cd9f68c3fbfcfa527912f73b17318dd5'
         );    
         $response = Request::get(
-            'https://api.trello.com/1/boards/5faad17de5e461462d0d8b3d/lists',
+            'https://api.trello.com/1/boards/5faad17de5e461462d0d8b3d/cards',
             $headers,
             $query
         );
@@ -148,7 +148,7 @@ class SiteController extends Controller
             'https://api.trello.com/1/boards/',
             $headers,
             $query
-          );
+        );
         return $response->body;
     }
 
