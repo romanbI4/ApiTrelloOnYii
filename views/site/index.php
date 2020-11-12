@@ -37,7 +37,9 @@ $this->title = 'My Yii Application';
             ]);
         }
     }
-    print_r((object)$modelQueryHard[0]);
+
+    var_dump($modelQueryHard[0]);
+    
     ?>
     </div>
 </div>
