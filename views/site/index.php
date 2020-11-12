@@ -36,21 +36,8 @@ $this->title = 'My Yii Application';
                 'dataProvider' => $dataProvider,
             ]);
         }
-    } 
-    
-    // if (!empty($sql)) {
-    //     $dataProvider = new ActiveDataProvider([
-    //         'query' => $sql,
-    //         'pagination' => [
-    //             'pageSize' => 20,
-    //         ],
-    //     ]);
-    //     if (!empty($dataProvider)) {
-    //         echo GridView::widget([
-    //             'dataProvider' => $dataProvider,
-    //         ]);
-    //     }
-    // }
+    }
+    print_r((object)$modelQueryHard[0]);
     ?>
     </div>
 </div>

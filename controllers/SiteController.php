@@ -11,8 +11,11 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Logs;
 use app\models\Search;
+use app\models\Customers;
+use app\models\Orders;
 use Unirest\Request;
 use linslin\yii2\curl;
+use yii\db\Query;
 
 class SiteController extends Controller
 {
@@ -95,15 +98,35 @@ class SiteController extends Controller
                 }
             }
         }
-        // $sql = Yii::$app->db2->createCommand('SELECT * FROM `Customers` 
-        //         LEFT JOIN `Orders` ON `Customers`.`cust_id` = `Orders`.`cust_id` 
-        //         RIGHT JOIN `OrderItems` ON `Orders`.`order_num` = `OrderItems`.`order_num`
-        //         GROUP BY `Customers`.`cust_id`')
-        //     ->execute();
-        // var_dump($sql);
+
+        // $query = (new Query())
+        //     ->select('Customers.cust_name, Customers.cust_address, Customers.cust_city, Orders.order_date, Orders.cust_id, OrderItems.order_item, OrderItems.quantity, OrderItems.item_price, Products.prod_name, Products.prod_price, Products.prod_desc, Vendors.vend_name, Vendors.vend_address, Vendors.vend_city, Vendors.vend_state, Vendors.vend_zip, Vendors.vend_country')
+        //     ->from(Customers::tableName())
+        //     ->leftJoin('Orders', 'Customers.cust_id = Orders.cust_id')
+        //     ->leftJoin('OrderItems', 'Orders.order_num = OrderItems.order_num')
+        //     ->leftJoin('Products', 'OrderItems.prod_id = Products.prod_id')
+        //     ->leftJoin('Vendors', 'Orders.order_num = Products.vend_id = Vendors.vend_id')
+        //     ->where(['>', 'Customers.cust_id', '1000000001'])
+        //     ->andWhere(['<', 'Customers.cust_id', '1000000004'])
+        //     ->andWhere(['=', 'Orders.order_num', '20006'])
+        //     ->groupBy('Customers.cust_id')
+        //     ->all();
+        $sql = Yii::$app->db2->createCommand("SELECT `Customers`.`cust_name`, `Customers`.`cust_address`, `Customers`.`cust_city`, `Orders`.`order_date`, `Orders`.`cust_id`, `OrderItems`.`order_item`, `OrderItems`.`quantity`, `OrderItems`.`item_price`, `Products`.`prod_name`, `Products`.`prod_price`, `Products`.`prod_desc`, `Vendors`.`vend_name`, `Vendors`.`vend_address`, `Vendors`.`vend_city`, `Vendors`.`vend_state`, `Vendors`.`vend_zip`, `Vendors`.`vend_country` 
+            FROM `Customers` 
+            LEFT JOIN `Orders` ON Customers.cust_id = Orders.cust_id 
+            LEFT JOIN `OrderItems` ON Orders.order_num = OrderItems.order_num 
+            LEFT JOIN `Products` ON OrderItems.prod_id = Products.prod_id 
+            LEFT JOIN `Vendors` ON Orders.order_num = Products.vend_id = Vendors.vend_id 
+            WHERE (`Customers`.`cust_id` > '1000000001') 
+            AND (`Customers`.`cust_id` < '1000000004') 
+            AND (`Orders`.`order_num` = '20006') 
+            GROUP BY `Customers`.`cust_id`"
+        );
+        $sql = $sql->queryAll();
+        
         return $this->render('index', [
             'model' => $modelSearch,
-            // 'sql' => $sql
+            'modelQueryHard' => $sql
         ]);
     }
 
