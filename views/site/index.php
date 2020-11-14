@@ -28,7 +28,7 @@ $this->title = 'My Yii Application';
         $dataProvider = new ActiveDataProvider([
             'query' => Logs::find(),
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 50,
             ],
         ]);
         if (!empty($dataProvider)) {

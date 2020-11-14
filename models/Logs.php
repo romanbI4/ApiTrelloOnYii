@@ -31,7 +31,19 @@ class Logs extends \yii\db\ActiveRecord
         return [
             [['board_new_id', 'message', 'date'], 'required'],
             [['date'], 'safe'],
+            [['message'], 'unique'],
             [['message', 'board_old_id', 'board_new_id'], 'string', 'max' => 255],
+        ];
+    }
+
+     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'board_old_id' => 'Card Old id',
+            'board_new_id' => 'Card New id',
         ];
     }
 
