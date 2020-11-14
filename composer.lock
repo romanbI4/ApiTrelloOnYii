@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e29a381fd3506cf5e2bc8d6b2c07859",
+    "content-hash": "44e5df29bf0c003771b982623d03cf4c",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -32,7 +32,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -53,7 +53,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -345,6 +345,52 @@
                 "html"
             ],
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "fedemotta/yii2-cronjob",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fedemotta/yii2-cronjob.git",
+                "reference": "351b893f66e8758933183bfafb653d72a109e053"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fedemotta/yii2-cronjob/zipball/351b893f66e8758933183bfafb653d72a109e053",
+                "reference": "351b893f66e8758933183bfafb653d72a109e053",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "fedemotta\\cronjob\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Federico Nicolás Motta",
+                    "email": "fedemotta@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension to help in the creation of automated console scripts",
+            "keywords": [
+                "console",
+                "cron",
+                "crontab",
+                "extension",
+                "job",
+                "schedule",
+                "script",
+                "yii2"
+            ],
+            "time": "2015-10-07T20:47:12+00:00"
         },
         {
             "name": "linslin/yii2-curl",
@@ -939,6 +985,53 @@
                 "yii2"
             ],
             "time": "2019-09-19T11:33:03+00:00"
+        },
+        {
+            "name": "yii2tech/crontab",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/crontab.git",
+                "reference": "1d1c6bd20dc86b59da4d195bd1c7214366f79ec2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/crontab/zipball/1d1c6bd20dc86b59da4d195bd1c7214366f79ec2",
+                "reference": "1d1c6bd20dc86b59da4d195bd1c7214366f79ec2",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.14"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\crontab\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Crontab support extension for the Yii2 framework",
+            "keywords": [
+                "cron",
+                "cronjob",
+                "crontab",
+                "yii2"
+            ],
+            "time": "2018-09-19T10:11:05+00:00"
         },
         {
             "name": "yiisoft/yii2",
