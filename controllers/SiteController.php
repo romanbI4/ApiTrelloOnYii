@@ -70,26 +70,28 @@ class SiteController extends Controller
     {
         $modelSearch = new Search();
         if ($modelSearch->load(Yii::$app->request->post()) && $modelSearch->validate()) {
-            $arr = self::getNameColumnsTrello();
+            $arrNamesColumnTrello = self::getNameColumnsTrello();
             $arrayNames = [];
             $arrayIdLists = self::getIdListsInCardTrello();
             $arrayNameLists = self::getActionsTrello();
-            for ($i = 0; $i < count($arr); $i++) {
-                $arrayNames[$i]['name'] = $arr[$i]->name;
+            for ($i = 0; $i < count($arrNamesColumnTrello); $i++) {
+                $arrayNames[$i]['name'] = $arrNamesColumnTrello[$i]->name;
                 if (strpos($arrayNames[$i]['name'], $modelSearch->textForSearchBoard)) {
-                    if (isset($arr[$i]->id) && isset($arr[$i+1]->idList)) {
-                        $responseMove = self::MoveColumnTrello($arr[$i]->idBoard, $arr[$i+1]->idList, $arr[$i]->idList);
+                    if (isset($arrNamesColumnTrello[$i]->id) && isset($arrNamesColumnTrello[$i+1]->idList)) {
+                        $responseMove = self::MoveColumnTrello($arrNamesColumnTrello[$i]->idBoard, $arrNamesColumnTrello[$i+1]->idList, $arrNamesColumnTrello[$i]->idList);
                     }  
                 }
             }
             for ($j = 0; $j < count((array)$arrayNameLists); $j++) {
                 if (isset($arrayNameLists[$j]->data->card->name) && isset($arrayNameLists[$j]->data->listBefore->name) && isset($arrayNameLists[$j]->data->listAfter->name)) {
-                    $modelLogs = new Logs();
-                    $modelLogs->board_old_id = $arrayNameLists[$j]->data->listBefore->id;
-                    $modelLogs->board_new_id = $arrayNameLists[$j]->data->listAfter->id;
-                    $modelLogs->message = 'Карточка с именем ' . $arrayNameLists[$j]->data->card->name . ' из списка ' . $arrayNameLists[$j]->data->listBefore->name . ' перемещена в cписок с именем ' . $arrayNameLists[$j]->data->listAfter->name;
-                    $modelLogs->date = date('Y-m-d H:i:s', strtotime($arrayNameLists[$j]->date));
-                    $modelLogs->save();
+                    if ($arrayNameLists[$j]->data->listBefore->name < $arrayNameLists[$j]->data->listAfter->name) {
+                        $modelLogs = new Logs();
+                        $modelLogs->board_old_id = $arrayNameLists[$j]->data->listBefore->id;
+                        $modelLogs->board_new_id = $arrayNameLists[$j]->data->listAfter->id;
+                        $modelLogs->message = 'Карточка с именем ' . $arrayNameLists[$j]->data->card->name . ' из списка ' . $arrayNameLists[$j]->data->listBefore->name . ' перемещена в cписок с именем ' . $arrayNameLists[$j]->data->listAfter->name;
+                        $modelLogs->date = date('Y-m-d H:i:s', strtotime($arrayNameLists[$j]->date));
+                        $modelLogs->save();
+                    }
                 }
             }
         }
