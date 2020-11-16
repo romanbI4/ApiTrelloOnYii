@@ -27,4 +27,10 @@ $ git clone git@github.com:romanbI4/ApiTrelloOnYii.git ./
 
 Затем ввести в адресную строку домен сервера на установлено приложение(пример - localhost).
 
+## Команда для запуска cron задачи для консоли: 
+
+```sh
+php yii hello/cron "пока":
+```
+
 # Yii2 - Работа с API Trello, редактирование содержимого карточек @Roman Vdovenko (https://t.me/romanbI44)
