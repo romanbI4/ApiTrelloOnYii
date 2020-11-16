@@ -30,7 +30,7 @@ $ git clone git@github.com:romanbI4/ApiTrelloOnYii.git ./
 ## Команда для запуска cron задачи для консоли: 
 
 ```sh
-php yii hello/cron "пока":
+php yii hello/cron "пока"
 ```
 
 # Yii2 - Работа с API Trello, редактирование содержимого карточек @Roman Vdovenko (https://t.me/romanbI44)
